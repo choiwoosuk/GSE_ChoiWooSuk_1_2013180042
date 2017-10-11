@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Renderer.h"
-#include "ObjectManager.h"
 
 Renderer::Renderer(int windowSizeX, int windowSizeY)
 {
