@@ -17,7 +17,11 @@ but WITHOUT ANY WARRANTY.
 #include "Object.h"
 
 Renderer *g_Renderer = NULL;
+<<<<<<< HEAD
 Object a(0,0,0,50,1,1,1,1,10,1,1);
+=======
+Object a(0,0,0,50,1,1,1,1);
+>>>>>>> 2b28763255150fb4e7e2b929db0573b1a75e2374
 void RenderScene(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -25,8 +29,11 @@ void RenderScene(void)
 
 	// Renderer Test
 	g_Renderer->DrawSolidRect(a.x, a.y, a.z, a.size, a.r, a.g, a.b, a.a);
+<<<<<<< HEAD
 	a.update();
 
+=======
+>>>>>>> 2b28763255150fb4e7e2b929db0573b1a75e2374
 	glutSwapBuffers();
 }
 
