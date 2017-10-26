@@ -9,84 +9,66 @@ but WITHOUT ANY WARRANTY.
 */
 
 #include "stdafx.h"
-#include <iostream>
 #include "Dependencies\glew.h"
 #include "Dependencies\freeglut.h"
 
 #include "Renderer.h"
 #include "Object.h"
+#include <cstdlib>
+#include "ctime"
+#include "SceneMngr.h"
+
+bool mousech = true;
 
 Renderer *g_Renderer = NULL;
-<<<<<<< HEAD
-Object a[100] = {Object(0,0,0,50,100,50,100,1,1.5,1,1 )};
-	   //x,y,z,size,r,g,b,a,velo,vecX,vecY
-//Object a[100]=(0,0,0,50,100,50,100,1,1,1,1);
-int i=0;
+Object b[MAX_OBJECTS_COUNT];
+SceneMngr *SM = NULL;
 
-=======
-<<<<<<< HEAD
-Object a(0,0,0,50,1,1,1,1,10,1,1);
-=======
-Object a(0,0,0,50,1,1,1,1);
->>>>>>> 2b28763255150fb4e7e2b929db0573b1a75e2374
->>>>>>> f3b9eebab11e6386f8da67cc14a86976a8b07e81
 void RenderScene(void)
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.0f, 0.3f, 0.3f, 1.0f);
-
-	// Renderer Test
-<<<<<<< HEAD
-	g_Renderer->DrawSolidRect(a[i].x, a[i].y, a[i].z, a[i].size, a[i].r, a[i].g, a[i].b, a[i].a);
-	a[i].update();
-
-=======
-	g_Renderer->DrawSolidRect(a.x, a.y, a.z, a.size, a.r, a.g, a.b, a.a);
-<<<<<<< HEAD
-	a.update();
-
-=======
->>>>>>> 2b28763255150fb4e7e2b929db0573b1a75e2374
->>>>>>> f3b9eebab11e6386f8da67cc14a86976a8b07e81
-	glutSwapBuffers();
+	DWORD currTime = timeGetTime();
+	SM->RenderScene(b);
 }
 
 void Idle(void)
 {
-	RenderScene();
+	for (int i = 0; i < MAX_OBJECTS_COUNT; i++)
+	{
+		b[i].Update();
+	}
+	SM->Collide(b);
+	
+	SM->RenderScene(b);
 }
 
 void MouseInput(int button, int state, int x, int y)
 {
-	if (button == GLUT_LEFT_BUTTON) // 왼쪽 버튼일때
+	if (button == GLUT_LEFT_BUTTON)
 	{
 		if (state == GLUT_UP)
 		{
-<<<<<<< HEAD
-			a[i].x=x-250;
-			a[i].y=250-y;
-=======
-			x = a.x;
-			y = a.y;
->>>>>>> f3b9eebab11e6386f8da67cc14a86976a8b07e81
-		}	
+			if (mousech)
+				mousech = false;
+			else if (!mousech)
+				mousech = true;
+		}
 	}
-	RenderScene();
-
+	SM->RenderScene(b);
 }
 
 void KeyInput(unsigned char key, int x, int y)
 {
-	RenderScene();
+	SM->RenderScene(b);
 }
 
 void SpecialKeyInput(int key, int x, int y)
 {
-	RenderScene();
+	SM->RenderScene(b);
 }
 
 int main(int argc, char **argv)
 {
+	
 	// Initialize GL things
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
@@ -94,23 +76,31 @@ int main(int argc, char **argv)
 	glutInitWindowSize(500, 500);
 	glutCreateWindow("Game Software Engineering KPU");
 
+	for (int i = 0; i < MAX_OBJECTS_COUNT; i++)
+	{
+		SM->Add(b, i);
+	}
+
 	glewInit();
 	if (glewIsSupported("GL_VERSION_3_0"))
 	{
-		std::cout << " GLEW Version is 3.0\n ";
+		cout << " GLEW Version is 3.0\n ";
 	}
 	else
 	{
-		std::cout << "GLEW 3.0 not supported\n ";
+		cout << "GLEW 3.0 not supported\n ";
 	}
 
 	// Initialize Renderer
+	
 	g_Renderer = new Renderer(500, 500);
+
 	if (!g_Renderer->IsInitialized())
 	{
-		std::cout << "Renderer could not be initialized.. \n";
+		cout << "Renderer could not be initialized.. \n";
 	}
-
+	
+	SM = new SceneMngr();
 	glutDisplayFunc(RenderScene);
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeyInput);
