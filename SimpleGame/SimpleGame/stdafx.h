@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <tchar.h>
-#include <iostream>
-
-#define MAX_OBJECT_COUNT 100
+#include <iostream> 
+#include <Windows.h>
+using namespace std;
+#define MAX_OBJECTS_COUNT 50
