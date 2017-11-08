@@ -1,0 +1,9 @@
+﻿  stdafx.cpp
+  SimpleGame.cpp
+c:\gse_choiwoosuk_1_2013180042\2013180042 최우석\simplegame\dependencies\glew.h(1205): fatal error C1083: 포함 파일을 열 수 없습니다. 'GL/glu.h': No such file or directory
+  SceneMgr.cpp
+c:\gse_choiwoosuk_1_2013180042\2013180042 최우석\simplegame\dependencies\glew.h(1205): fatal error C1083: 포함 파일을 열 수 없습니다. 'GL/glu.h': No such file or directory
+  Renderer.cpp
+c:\gse_choiwoosuk_1_2013180042\2013180042 최우석\simplegame\dependencies\glew.h(1205): fatal error C1083: 포함 파일을 열 수 없습니다. 'GL/glu.h': No such file or directory
+  Object.cpp
+  코드를 생성하고 있습니다...
