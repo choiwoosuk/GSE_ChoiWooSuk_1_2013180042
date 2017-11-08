@@ -1,2 +1,0 @@
-# GSE_ChoiWooSuk_1_2013180042
-GSE_ChoiWooSuk_1_2013180042
