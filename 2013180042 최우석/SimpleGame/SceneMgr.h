@@ -25,8 +25,10 @@ private:
 	Object *m_bulletObjects[MAX_OBJECT_COUNT];
 
 	Renderer *m_renderer;
+	//Renderer *m_build;
 
 	int m_windowWidth;
 	int m_windowHeight;
+	int m_build;
 };
 

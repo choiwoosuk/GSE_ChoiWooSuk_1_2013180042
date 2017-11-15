@@ -5,7 +5,7 @@ SceneMgr::SceneMgr(int width, int height)
 {
 	// Initialize Renderer
 	m_renderer = new Renderer(width, height);
-
+	m_build = m_renderer->CreatePngTexture("./Resource/sonic.png");
 	if (!m_renderer->IsInitialized())
 	{
 		cout << "SceneMgr::Renderer could not be initialized.. \n";
@@ -23,22 +23,39 @@ SceneMgr::SceneMgr(int width, int height)
 
 void SceneMgr::DrawAllObjects()
 {
-	m_renderer->DrawSolidRect(0, 0,	0, m_windowWidth, 0, 0, 0, 0.4);
+	m_renderer->DrawSolidRect(0, 0,	0, m_windowWidth, 0, 0, 0, 1);
 	for (int i = 0; i < MAX_OBJECT_COUNT; i++)
 	{
 		if (m_actorObjects[i] != NULL)
 		{
-			// Renderer Test
-			m_renderer->DrawSolidRect(
-				m_actorObjects[i]->m_x,
-				m_actorObjects[i]->m_y,
-				0,
-				m_actorObjects[i]->m_size,
-				m_actorObjects[i]->m_color[0],
-				m_actorObjects[i]->m_color[1],
-				m_actorObjects[i]->m_color[2],
-				m_actorObjects[i]->m_color[3]
-			);
+			if (i==0)
+			{
+				m_renderer->DrawTexturedRect(
+					m_actorObjects[i]->m_x,
+					m_actorObjects[i]->m_y,
+					0,
+					m_actorObjects[i]->m_size,
+					m_actorObjects[i]->m_color[0],
+					m_actorObjects[i]->m_color[1],
+					m_actorObjects[i]->m_color[2],
+					m_actorObjects[i]->m_color[3],
+					m_build
+				);
+			}
+			else
+			{
+				// Renderer Test
+				m_renderer->DrawSolidRect(
+					m_actorObjects[i]->m_x,
+					m_actorObjects[i]->m_y,
+					0,
+					m_actorObjects[i]->m_size,
+					m_actorObjects[i]->m_color[0],
+					m_actorObjects[i]->m_color[1],
+					m_actorObjects[i]->m_color[2],
+					m_actorObjects[i]->m_color[3]
+				);
+			}
 		}
 	}
 }
@@ -53,6 +70,7 @@ int SceneMgr::AddActorObject(float x, float y, int name)
 	if (name == OBJECT_BUILDING)
 	{
 		m_actorObjects[0] = new Object(x, y, name);
+		cout << "건물생성" << endl;
 		return 0;
 	}
 	for (int i = 0; i < MAX_OBJECT_COUNT; i++)
@@ -61,6 +79,7 @@ int SceneMgr::AddActorObject(float x, float y, int name)
 		{
 			m_actorObjects[i] = new Object(x, y, name);
 			return i;
+			cout << "오브젝트 생성" << endl;
 		}
 	}
 	//slots are full
@@ -166,6 +185,7 @@ void SceneMgr::DoCollisionTest()
 				m_actorObjects[i]->m_color[1] = m_actorObjects[i]->m_color[1];
 				m_actorObjects[i]->m_color[2] = m_actorObjects[i]->m_color[2];
 				m_actorObjects[i]->m_color[3] = m_actorObjects[i]->m_color[3];
+
 			}
 			else
 			{

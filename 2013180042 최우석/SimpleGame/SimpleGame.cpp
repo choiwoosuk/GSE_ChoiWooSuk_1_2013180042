@@ -33,7 +33,6 @@ void RenderScene(void)
 	g_SceneMgr->UpdateAllActorObjects((float)elapsedTime);
 	g_SceneMgr->DrawAllObjects();
 
-	g_SceneMgr->AddActorObject(0, 0, OBJECT_BUILDING);
 	glutSwapBuffers();
 }
 
@@ -98,6 +97,7 @@ int main(int argc, char **argv)
 	glutSpecialFunc(SpecialKeyInput);
 
 	g_SceneMgr = new SceneMgr(500, 500);
+	g_SceneMgr->AddActorObject(0, 0, OBJECT_BUILDING);
 
 	g_prevTime = timeGetTime();
 
