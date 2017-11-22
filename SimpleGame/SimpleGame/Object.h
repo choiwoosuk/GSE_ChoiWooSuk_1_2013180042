@@ -3,7 +3,7 @@
 class Object
 {
 public:
-	Object(float x, float y, int type);
+	Object(float x, float y, int type, int team);
 	~Object();
 	void update(float elapsedTime);
 
@@ -25,7 +25,9 @@ public:
 	float life_time;
 
 	float bulletTime;
+	float charTime;
 
 	int obj_type;
+	int Team;
 };
 

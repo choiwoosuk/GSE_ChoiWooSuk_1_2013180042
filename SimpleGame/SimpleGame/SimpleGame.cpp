@@ -25,11 +25,22 @@ SceneManager *scM = NULL;
 bool Ldown = false;
 DWORD prevTime = 0;
 
+float timeCheck = 0;
+float timeBoolCheck = 0;
+
+bool timeBool = false;
+
 void RenderScene(void)
 {
+	int x = rand() % 500 - 250;
+	int y = rand() % 400;
+
 	DWORD startTime = timeGetTime();
 	DWORD elapsedTime = startTime - prevTime;
 	prevTime = startTime;
+
+	timeCheck = timeCheck + elapsedTime;
+	timeBoolCheck = timeBoolCheck + elapsedTime;
 
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0f, 0.3f, 0.3f, 1.0f);
@@ -37,6 +48,17 @@ void RenderScene(void)
 	// Renderer Test
 	//obj->update(elapsedTime);
 	//g_Renderer->DrawSolidRect(obj->ob_x,obj->ob_y,obj->ob_z,obj->ob_size,obj->color_r,obj->color_g,obj->color_b,obj->color_a);
+	//cout << timeCheck/1000 << endl;
+	if (timeCheck / 1000 > 5)
+	{
+		scM->addObject(x, y, OBJECT_CHARACTER, 1);
+		timeCheck = 0;
+	}
+	if (timeBoolCheck / 1000 > 7)
+	{
+		timeBool = true;
+		timeBoolCheck = 0;
+	}
 	scM->updateObj(elapsedTime);
 	scM->drawObject();
 	glutSwapBuffers();
@@ -58,7 +80,16 @@ void MouseInput(int button, int state, int x, int y)
 	{
 		if (Ldown == true)
 		{
-			scM->addObject(x-250,-y+250, OBJECT_CHARACTER);
+			if (-y + 400 > 0 && timeBool == true)
+			{
+				scM->addObject(x - 250, 0, OBJECT_CHARACTER, 2);
+				timeBool = false;
+			}
+			else if(-y + 400 < 0 && timeBool == true)
+			{
+				scM->addObject(x - 250, -y + 400, OBJECT_CHARACTER, 2);
+				timeBool = false;
+			}
 		}
 		Ldown = false;
 	}
@@ -81,7 +112,7 @@ int main(int argc, char **argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(0, 0);
-	glutInitWindowSize(500, 500);
+	glutInitWindowSize(500, 800);
 	glutCreateWindow("Game Software Engineering KPU");
 
 	glewInit();
@@ -100,8 +131,15 @@ int main(int argc, char **argv)
 	glutMouseFunc(MouseInput);
 	glutSpecialFunc(SpecialKeyInput);
 
-	scM = new SceneManager(500, 500);
-	scM->addObject(0, 0, OBJECT_BUILDING);
+	scM = new SceneManager(500, 800);
+	scM->addObject(0, 350, OBJECT_BUILDING, 1);
+	scM->addObject(-150, 300, OBJECT_BUILDING, 1);
+	scM->addObject(150, 300, OBJECT_BUILDING, 1);
+
+	scM->addObject(0, -350, OBJECT_BUILDING, 2);
+	scM->addObject(-150, -300, OBJECT_BUILDING, 2);
+	scM->addObject(150, -300, OBJECT_BUILDING, 2);
+
 	prevTime = timeGetTime();
 
 	glutMainLoop();

@@ -10,8 +10,8 @@ public:
 
 	void updateObj(float elapseT);
 	void drawObject();
-	int addObject(float x, float y, int type);
-	int addBullet(float x, float y, int type);
+	int addObject(float x, float y, int type, int team);
+	int addBullet(float x, float y, int type, int team);
 
 	void collision();
 	void deleteObj(int ob);
@@ -22,6 +22,7 @@ public:
 
 	int windowW;
 	int windowH;
-	int texCharacter;
+	int Ogong;
+	int Vegeta;
 };
 
