@@ -7,7 +7,7 @@ int k = 0;
 SceneManager::SceneManager(int width, int height)
 {
 	g_Renderer = new Renderer(width, height);
-	//texCharacter = g_Renderer->CreatePngTexture("./Resource/ogong.png");
+	texCharacter = g_Renderer->CreatePngTexture("./Resource/ogong.png");
 	windowW = width;
 	windowH = height;
 
@@ -24,9 +24,6 @@ void SceneManager::drawObject()
 	{
 		if (obj[i] != NULL)
 		{
-			g_Renderer->DrawSolidRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a);
-			//g_Renderer->DrawTexturedRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, texCharacter);
-			/*
 			if (obj[i]->obj_type == OBJECT_BUILDING)
 			{
 			g_Renderer->DrawTexturedRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, texCharacter);
@@ -35,7 +32,6 @@ void SceneManager::drawObject()
 			{
 			g_Renderer->DrawSolidRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a);
 			}
-			*/
 		}
 	}
 }
@@ -152,6 +148,7 @@ void SceneManager::collision()
 							obj[i]->life = obj[i]->life - obj[j]->life;
 							obj[j]->life = 0;
 							colCheck++;
+							//cout << obj[i]->life << endl;
 						}
 						else if (obj[j]->obj_type == OBJECT_BUILDING && obj[i]->obj_type == OBJECT_ARROW)
 						{

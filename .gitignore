@@ -2,3 +2,7 @@
 *.pdb
 *.ilk
 *.tlog
+*.pch
+*.pch
+*.log
+*.exe

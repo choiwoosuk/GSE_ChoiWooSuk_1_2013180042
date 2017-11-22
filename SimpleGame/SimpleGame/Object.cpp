@@ -13,7 +13,7 @@ Object::Object(float x, float y, int type)
 		color_r = 100;
 		color_g = 50;
 		color_b = 0;
-		color_a = 0;
+		color_a = 1;
 		ob_vecX = 0;
 		ob_vecY = 0;
 		life = 500;
@@ -29,7 +29,7 @@ Object::Object(float x, float y, int type)
 		color_r = 100;
 		color_g = 100;
 		color_b = 100;
-		color_a = 0;
+		color_a = 1;
 		ob_vecX = 300.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		ob_vecY = 300.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		life = 10;
@@ -45,7 +45,7 @@ Object::Object(float x, float y, int type)
 		color_r = 100;
 		color_g = 0;
 		color_b = 0;
-		color_a = 0;
+		color_a = 1;
 		ob_vecX = 600.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		ob_vecY = 600.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		life = 20;
@@ -61,7 +61,7 @@ Object::Object(float x, float y, int type)
 		color_r = 0;
 		color_g = 100;
 		color_b = 0;
-		color_a = 0;
+		color_a = 1;
 		ob_vecX = 100.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		ob_vecY = 100.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		life = 10;
