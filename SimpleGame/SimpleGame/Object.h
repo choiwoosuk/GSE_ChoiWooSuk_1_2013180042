@@ -20,6 +20,7 @@ public:
 	float color_a;
 	float ob_vecX;
 	float ob_vecY;
+	float level;
 
 	float life;
 	float life_time;

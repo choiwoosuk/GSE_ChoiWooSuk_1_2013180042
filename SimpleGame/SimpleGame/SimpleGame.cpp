@@ -42,19 +42,21 @@ void RenderScene(void)
 	timeCheck = timeCheck + elapsedTime;
 	timeBoolCheck = timeBoolCheck + elapsedTime;
 
-	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.0f, 0.3f, 0.3f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+	glClearDepth(1.f);
 
 	// Renderer Test
 	//obj->update(elapsedTime);
 	//g_Renderer->DrawSolidRect(obj->ob_x,obj->ob_y,obj->ob_z,obj->ob_size,obj->color_r,obj->color_g,obj->color_b,obj->color_a);
 	//cout << timeCheck/1000 << endl;
-	if (timeCheck / 1000 > 5)
+	if (timeCheck / 1000 > 3)
 	{
 		scM->addObject(x, y, OBJECT_CHARACTER, 1);
 		timeCheck = 0;
 	}
-	if (timeBoolCheck / 1000 > 7)
+	if (timeBoolCheck / 1000 > 3)
 	{
 		timeBool = true;
 		timeBoolCheck = 0;

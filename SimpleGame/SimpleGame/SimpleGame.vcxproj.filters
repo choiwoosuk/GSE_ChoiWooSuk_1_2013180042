@@ -67,6 +67,12 @@
     <None Include="Shaders\SolidRect.vs">
       <Filter>소스 파일\Shaders</Filter>
     </None>
+    <None Include="Shaders\SolidRectGauge.fs">
+      <Filter>소스 파일\Shaders</Filter>
+    </None>
+    <None Include="Shaders\SolidRectGauge.vs">
+      <Filter>소스 파일\Shaders</Filter>
+    </None>
     <None Include="Shaders\SolidRectWithTexture.fs">
       <Filter>소스 파일\Shaders</Filter>
     </None>
@@ -77,6 +83,12 @@
       <Filter>소스 파일\Shaders</Filter>
     </None>
     <None Include="Shaders\SolidRectWithTextureSeq.vs">
+      <Filter>소스 파일\Shaders</Filter>
+    </None>
+    <None Include="Shaders\SolidRectXY.fs">
+      <Filter>소스 파일\Shaders</Filter>
+    </None>
+    <None Include="Shaders\SolidRectXY.vs">
       <Filter>소스 파일\Shaders</Filter>
     </None>
   </ItemGroup>

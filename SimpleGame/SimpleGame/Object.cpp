@@ -11,9 +11,9 @@ Object::Object(float x, float y, int type, int team)
 		ob_y = y;
 		ob_z = 0;
 		ob_size = 50;
-		color_r = 100;
-		color_g = 50;
-		color_b = 0;
+		color_r = 1;
+		color_g = 1;
+		color_b = 1;
 		color_a = 1;
 		ob_vecX = 0;
 		ob_vecY = 0;
@@ -21,6 +21,7 @@ Object::Object(float x, float y, int type, int team)
 		life_time = 50000;
 		obj_type = OBJECT_BUILDING;
 		Team = 1;
+		level = 0.1;
 	}
 	else if (type == OBJECT_BUILDING && team == 2)
 	{
@@ -28,9 +29,9 @@ Object::Object(float x, float y, int type, int team)
 		ob_y = y;
 		ob_z = 0;
 		ob_size = 50;
-		color_r = 100;
-		color_g = 50;
-		color_b = 0;
+		color_r = 1;
+		color_g = 1;
+		color_b = 1;
 		color_a = 1;
 		ob_vecX = 0;
 		ob_vecY = 0;
@@ -38,6 +39,7 @@ Object::Object(float x, float y, int type, int team)
 		life_time = 50000;
 		obj_type = OBJECT_BUILDING;
 		Team = 2;
+		level = 0.1;
 	}
 
 	if (type == OBJECT_CHARACTER && team == 1)
@@ -56,6 +58,7 @@ Object::Object(float x, float y, int type, int team)
 		life_time = 1000;
 		obj_type = OBJECT_CHARACTER;
 		Team = 1;
+		level = 0.2;
 	}
 	else if (type == OBJECT_CHARACTER && team == 2)
 	{
@@ -73,6 +76,7 @@ Object::Object(float x, float y, int type, int team)
 		life_time = 1000;
 		obj_type = OBJECT_CHARACTER;
 		Team = 2;
+		level = 0.2;
 	}
 
 	if (type == OBJECT_BULLET && team == 1)
@@ -88,9 +92,10 @@ Object::Object(float x, float y, int type, int team)
 		ob_vecX = 600.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		ob_vecY = 600.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		life = 20;
-		life_time = 1500;
+		life_time = 10;
 		obj_type = OBJECT_BULLET;
 		Team = 1;
+		level = 0.3;
 	}
 	else if (type == OBJECT_BULLET && team == 2)
 	{
@@ -105,9 +110,10 @@ Object::Object(float x, float y, int type, int team)
 		ob_vecX = 600.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		ob_vecY = 600.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		life = 20;
-		life_time = 1500;
+		life_time = 10;
 		obj_type = OBJECT_BULLET;
 		Team = 2;
+		level = 0.3;
 	}
 
 	if (type == OBJECT_ARROW && team == 1)
@@ -123,9 +129,10 @@ Object::Object(float x, float y, int type, int team)
 		ob_vecX = 100.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		ob_vecY = 100.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		life = 10;
-		life_time = 500;
+		life_time = 30;
 		obj_type = OBJECT_ARROW;
 		Team = 1;
+		level = 0.3;
 	}
 	else if (type == OBJECT_ARROW && team == 2)
 	{
@@ -140,9 +147,10 @@ Object::Object(float x, float y, int type, int team)
 		ob_vecX = 100.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		ob_vecY = 100.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		life = 10;
-		life_time = 500;
+		life_time = 30;
 		obj_type = OBJECT_ARROW;
 		Team = 2;
+		level = 0.3;
 	}
 }
 
@@ -156,24 +164,26 @@ void Object::update(float elapsedTime)
 
 	ob_x = ob_x + ob_vecX*elapTime;
 	ob_y = ob_y + ob_vecY*elapTime;
-	if (ob_x > 250)
-	{
-		ob_vecX = -ob_vecX;
-	}
-	if (ob_x < -250)
+	if (ob_x > 250 && obj_type!=OBJECT_ARROW && obj_type != OBJECT_BULLET)
 	{
 		ob_vecX = -ob_vecX;
 	}
 
-	if (ob_y > 400)
+	if (ob_x < -250 && obj_type != OBJECT_ARROW && obj_type != OBJECT_BULLET)
+	{
+		ob_vecX = -ob_vecX;
+	}
+
+	if (ob_y > 400 && obj_type != OBJECT_ARROW && obj_type != OBJECT_BULLET)
 	{
 		ob_vecY = -ob_vecY;
 	}
 
-	if (ob_y < -400)
+	if (ob_y < -400 && obj_type != OBJECT_ARROW && obj_type != OBJECT_BULLET)
 	{
 		ob_vecY = -ob_vecY;
 	}
+
 	if (life_time > 0.f)
 	{
 		life_time -= elapTime;

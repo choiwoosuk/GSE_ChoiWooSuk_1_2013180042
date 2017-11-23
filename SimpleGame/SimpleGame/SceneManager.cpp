@@ -19,22 +19,33 @@ SceneManager::SceneManager(int width, int height)
 
 void SceneManager::drawObject()
 {
-	g_Renderer->DrawSolidRect(0, 0, 0, windowH, 0, 0, 0, 1);
 	for (int i = 0; i < MAX_OBJECT; ++i)
 	{
 		if (obj[i] != NULL)
 		{
 			if (obj[i]->obj_type == OBJECT_BUILDING && obj[i]->Team == 1)
 			{
-			g_Renderer->DrawTexturedRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, Ogong);
+				g_Renderer->DrawTexturedRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, Ogong, 0.1);
+				g_Renderer->DrawSolidRectGauge(obj[i]->ob_x, obj[i]->ob_y - 30, obj[i]->ob_z, 35, 5, 1, 0, 0, obj[i]->color_a, (obj[i]->life / 500), 0.01);
 			}
 			else if (obj[i]->obj_type == OBJECT_BUILDING && obj[i]->Team == 2)
 			{
-				g_Renderer->DrawTexturedRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, Vegeta);
+				g_Renderer->DrawTexturedRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, Vegeta, 0.1);
+				g_Renderer->DrawSolidRectGauge(obj[i]->ob_x, obj[i]->ob_y + 30, obj[i]->ob_z, 35, 5, 0, 0, 1, obj[i]->color_a, (obj[i]->life / 500), 0.01);
+			}
+			else if (obj[i]->obj_type == OBJECT_CHARACTER && obj[i]->Team == 1)
+			{
+				g_Renderer->DrawSolidRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, obj[i]->level);
+				g_Renderer->DrawSolidRectGauge(obj[i]->ob_x, obj[i]->ob_y + 15, obj[i]->ob_z, 35, 5, 1, 0, 0, obj[i]->color_a, (obj[i]->life / 10), 0.01);
+			}
+			else if (obj[i]->obj_type == OBJECT_CHARACTER && obj[i]->Team == 2)
+			{
+				g_Renderer->DrawSolidRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, obj[i]->level);
+				g_Renderer->DrawSolidRectGauge(obj[i]->ob_x, obj[i]->ob_y + 15, obj[i]->ob_z, 35, 5, 0, 0, 1, obj[i]->color_a, (obj[i]->life / 10), 0.01);
 			}
 			else
 			{
-			g_Renderer->DrawSolidRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a);
+			g_Renderer->DrawSolidRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, obj[i]->level);
 			}
 		}
 	}
@@ -140,6 +151,20 @@ void SceneManager::collision()
 							colCheck++;
 						}
 						else if (obj[j]->obj_type == OBJECT_CHARACTER && obj[i]->obj_type == OBJECT_BULLET && obj[j]->Team != obj[i]->Team)
+						{
+							obj[j]->life = obj[j]->life - obj[i]->life;
+							obj[i]->life = 0;
+							colCheck++;
+						}
+
+						//캐릭터가 화살에 맞았을때
+						else if (obj[i]->obj_type == OBJECT_CHARACTER && obj[j]->obj_type == OBJECT_ARROW && obj[i]->Team != obj[j]->Team)
+						{
+							obj[i]->life = obj[i]->life - obj[j]->life;
+							obj[j]->life = 0;
+							colCheck++;
+						}
+						else if (obj[j]->obj_type == OBJECT_CHARACTER && obj[i]->obj_type == OBJECT_ARROW && obj[j]->Team != obj[i]->Team)
 						{
 							obj[j]->life = obj[j]->life - obj[i]->life;
 							obj[i]->life = 0;
