@@ -6,3 +6,7 @@
 *.pch
 *.log
 *.exe
+*.log
+*.obj
+*.idb
+*.exe
