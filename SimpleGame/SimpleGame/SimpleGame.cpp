@@ -51,12 +51,12 @@ void RenderScene(void)
 	//obj->update(elapsedTime);
 	//g_Renderer->DrawSolidRect(obj->ob_x,obj->ob_y,obj->ob_z,obj->ob_size,obj->color_r,obj->color_g,obj->color_b,obj->color_a);
 	//cout << timeCheck/1000 << endl;
-	if (timeCheck / 1000 > 4)
+	if (timeCheck / 1000 > CHARACTER_INSERT)
 	{
 		scM->addObject(x, y, OBJECT_CHARACTER, 1);
 		timeCheck = 0;
 	}
-	if (timeBoolCheck / 1000 > 4)
+	if (timeBoolCheck / 1000 > CHARACTER_INSERT)
 	{
 		timeBool = true;
 		timeBoolCheck = 0;

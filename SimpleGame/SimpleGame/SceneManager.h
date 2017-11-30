@@ -24,5 +24,10 @@ public:
 	int windowH;
 	int Ogong;
 	int Vegeta;
+	int Bg;
+	int Player;
+	int Enemy;
+	int Particle;
+	int Particle2;
 };
 

@@ -27,8 +27,12 @@ public:
 
 	float bulletTime;
 	float charTime;
+	float aniTime;
 
 	int obj_type;
 	int Team;
+
+	int ani;
+	float part;
 };
 

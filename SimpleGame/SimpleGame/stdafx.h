@@ -14,4 +14,8 @@
 # define OBJECT_BULLET 2
 # define OBJECT_ARROW 3
 
+#define BULLETTIME 3
+#define ARROWTIME 2
+#define CHARACTER_INSERT 2
+
 using namespace std;

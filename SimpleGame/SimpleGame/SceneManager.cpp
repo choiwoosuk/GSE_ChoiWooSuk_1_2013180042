@@ -8,6 +8,11 @@ SceneManager::SceneManager(int width, int height)
 	g_Renderer = new Renderer(width, height);
 	Ogong = g_Renderer->CreatePngTexture("./Resource/ogong.png");
 	Vegeta = g_Renderer->CreatePngTexture("./Resource/vegeta.png");
+	Bg = g_Renderer->CreatePngTexture("./Resource/bg2.png");
+	Player = g_Renderer->CreatePngTexture("./Resource/player.png");
+	Enemy = g_Renderer->CreatePngTexture("./Resource/enemy.png");
+	Particle = g_Renderer->CreatePngTexture("./Resource/part.png");
+	Particle2 = g_Renderer->CreatePngTexture("./Resource/part2.png");
 	windowW = width;
 	windowH = height;
 
@@ -19,6 +24,7 @@ SceneManager::SceneManager(int width, int height)
 
 void SceneManager::drawObject()
 {
+	g_Renderer->DrawTexturedRect(0,0, 0,800, 1, 1, 1, 1, Bg, 0.9);
 	for (int i = 0; i < MAX_OBJECT; ++i)
 	{
 		if (obj[i] != NULL)
@@ -35,13 +41,25 @@ void SceneManager::drawObject()
 			}
 			else if (obj[i]->obj_type == OBJECT_CHARACTER && obj[i]->Team == 1)
 			{
-				g_Renderer->DrawSolidRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, obj[i]->level);
+				//g_Renderer->DrawSolidRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, obj[i]->level);
+				g_Renderer->DrawTexturedRectSeq(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, Enemy, obj[i]->ani, 0, 6, 1, obj[i]->level);
 				g_Renderer->DrawSolidRectGauge(obj[i]->ob_x, obj[i]->ob_y + 15, obj[i]->ob_z, 35, 5, 1, 0, 0, obj[i]->color_a, (obj[i]->life / 10), 0.01);
 			}
 			else if (obj[i]->obj_type == OBJECT_CHARACTER && obj[i]->Team == 2)
 			{
-				g_Renderer->DrawSolidRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, obj[i]->level);
+				//g_Renderer->DrawSolidRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, obj[i]->level);
+				g_Renderer->DrawTexturedRectSeq(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, Player, obj[i]->ani, 0, 6, 1, obj[i]->level);
 				g_Renderer->DrawSolidRectGauge(obj[i]->ob_x, obj[i]->ob_y + 15, obj[i]->ob_z, 35, 5, 0, 0, 1, obj[i]->color_a, (obj[i]->life / 10), 0.01);
+			}
+			else if (obj[i]->obj_type == OBJECT_BULLET && obj[i]->Team == 1)
+			{
+				g_Renderer->DrawParticle(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, 1, 1, 1, obj[i]->color_a, -obj[i]->ob_vecX/200, -obj[i]->ob_vecY / 200,Particle,obj[i]->part);
+				g_Renderer->DrawSolidRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, obj[i]->level);
+			}
+			else if (obj[i]->obj_type == OBJECT_BULLET && obj[i]->Team == 2)
+			{
+				g_Renderer->DrawParticle(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, 1, 1, 1, obj[i]->color_a, -obj[i]->ob_vecX / 200, -obj[i]->ob_vecY / 200, Particle2, obj[i]->part);
+				g_Renderer->DrawSolidRect(obj[i]->ob_x, obj[i]->ob_y, obj[i]->ob_z, obj[i]->ob_size, obj[i]->color_r, obj[i]->color_g, obj[i]->color_b, obj[i]->color_a, obj[i]->level);
 			}
 			else
 			{
@@ -289,7 +307,7 @@ void SceneManager::updateObj(float elapseT)
 				obj[i]->update(elapseT);
 				if (obj[i]->obj_type == OBJECT_BUILDING && obj[i]->Team == 1)
 				{
-					if (obj[i]->bulletTime > 10)
+					if (obj[i]->bulletTime > BULLETTIME)
 					{
 						addBullet(obj[i]->ob_x, obj[i]->ob_y, OBJECT_BULLET,1);
 						obj[i]->bulletTime = 0;
@@ -297,7 +315,7 @@ void SceneManager::updateObj(float elapseT)
 				}
 				else if (obj[i]->obj_type == OBJECT_BUILDING && obj[i]->Team == 2)
 				{
-					if (obj[i]->bulletTime > 10)
+					if (obj[i]->bulletTime > BULLETTIME)
 					{
 						addBullet(obj[i]->ob_x, obj[i]->ob_y, OBJECT_BULLET, 2);
 						obj[i]->bulletTime = 0;
@@ -306,7 +324,7 @@ void SceneManager::updateObj(float elapseT)
 
 				else if (obj[i]->obj_type == OBJECT_CHARACTER && obj[i]->Team == 1)
 				{
-					if (obj[i]->bulletTime > 3)
+					if (obj[i]->bulletTime > ARROWTIME)
 					{
 						addBullet(obj[i]->ob_x, obj[i]->ob_y, OBJECT_ARROW,1);
 						obj[i]->bulletTime = 0;
@@ -314,7 +332,7 @@ void SceneManager::updateObj(float elapseT)
 				}
 				else if (obj[i]->obj_type == OBJECT_CHARACTER && obj[i]->Team == 2)
 				{
-					if (obj[i]->bulletTime > 3)
+					if (obj[i]->bulletTime > ARROWTIME)
 					{
 						addBullet(obj[i]->ob_x, obj[i]->ob_y, OBJECT_ARROW, 2);
 						obj[i]->bulletTime = 0;
