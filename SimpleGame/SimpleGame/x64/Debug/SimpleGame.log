@@ -1,12 +1,12 @@
-﻿  Object.cpp
-c:\users\user\downloads\simplegame\simplegame\object.cpp(25): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
-c:\users\user\downloads\simplegame\simplegame\object.cpp(43): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
-c:\users\user\downloads\simplegame\simplegame\object.cpp(62): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
-c:\users\user\downloads\simplegame\simplegame\object.cpp(81): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
-c:\users\user\downloads\simplegame\simplegame\object.cpp(101): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
-c:\users\user\downloads\simplegame\simplegame\object.cpp(120): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
-c:\users\user\downloads\simplegame\simplegame\object.cpp(131): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
-c:\users\user\downloads\simplegame\simplegame\object.cpp(132): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
-c:\users\user\downloads\simplegame\simplegame\object.cpp(140): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
-c:\users\user\downloads\simplegame\simplegame\object.cpp(158): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
-  SimpleGame.vcxproj -> C:\Users\user\Downloads\SimpleGame\x64\Debug\SimpleGame.exe
+﻿  SceneManager.cpp
+c:\users\admin\desktop\simplegame\simplegame\scenemanager.cpp(31): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\admin\desktop\simplegame\simplegame\scenemanager.cpp(38): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\admin\desktop\simplegame\simplegame\scenemanager.cpp(39): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\admin\desktop\simplegame\simplegame\scenemanager.cpp(43): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\admin\desktop\simplegame\simplegame\scenemanager.cpp(44): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\admin\desktop\simplegame\simplegame\scenemanager.cpp(50): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\admin\desktop\simplegame\simplegame\scenemanager.cpp(56): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\admin\desktop\simplegame\simplegame\scenemanager.cpp(147): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\admin\desktop\simplegame\simplegame\scenemanager.cpp(163): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\admin\desktop\simplegame\simplegame\scenemanager.cpp(207): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+  SimpleGame.vcxproj -> C:\Users\admin\Desktop\SimpleGame\x64\Debug\SimpleGame.exe

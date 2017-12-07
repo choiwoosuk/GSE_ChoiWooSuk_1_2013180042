@@ -1,6 +1,7 @@
 #pragma once
 #include "Renderer.h"
 #include "Object.h"
+#include "Sound.h"
 
 class SceneManager
 {
@@ -19,6 +20,7 @@ public:
 	Object *obj[MAX_OBJECT];
 	//Object *bullet[MAX_OBJECT];
 	Renderer *g_Renderer;
+	Sound *m_sound;
 
 	int windowW;
 	int windowH;
@@ -29,5 +31,5 @@ public:
 	int Enemy;
 	int Particle;
 	int Particle2;
+	int soundBG;
 };
-

@@ -134,11 +134,11 @@ int main(int argc, char **argv)
 	glutSpecialFunc(SpecialKeyInput);
 
 	scM = new SceneManager(500, 800);
-	scM->addObject(0, 350, OBJECT_BUILDING, 1);
+	scM->addObject(0, 320, OBJECT_BUILDING, 1);
 	scM->addObject(-150, 300, OBJECT_BUILDING, 1);
 	scM->addObject(150, 300, OBJECT_BUILDING, 1);
 
-	scM->addObject(0, -350, OBJECT_BUILDING, 2);
+	scM->addObject(0, -320, OBJECT_BUILDING, 2);
 	scM->addObject(-150, -300, OBJECT_BUILDING, 2);
 	scM->addObject(150, -300, OBJECT_BUILDING, 2);
 

@@ -11,7 +11,7 @@ Object::Object(float x, float y, int type, int team)
 		ob_x = x;
 		ob_y = y;
 		ob_z = 0;
-		ob_size = 70;
+		ob_size = 80;
 		color_r = 1;
 		color_g = 1;
 		color_b = 1;
@@ -29,7 +29,7 @@ Object::Object(float x, float y, int type, int team)
 		ob_x = x;
 		ob_y = y;
 		ob_z = 0;
-		ob_size = 70;
+		ob_size = 80;
 		color_r = 1;
 		color_g = 1;
 		color_b = 1;
@@ -48,7 +48,7 @@ Object::Object(float x, float y, int type, int team)
 		ob_x = x;
 		ob_y = y;
 		ob_z = 0;
-		ob_size = 30;
+		ob_size = 50;
 		color_r = 1;
 		color_g = 0;
 		color_b = 0;
@@ -67,7 +67,7 @@ Object::Object(float x, float y, int type, int team)
 		ob_x = x;
 		ob_y = y;
 		ob_z = 0;
-		ob_size = 30;
+		ob_size = 50;
 		color_r = 0;
 		color_g = 0;
 		color_b = 1;

@@ -1,12 +1,12 @@
 
-*.pdb
-*.ilk
+*.obj
+*.pch
 *.tlog
-*.pch
-*.pch
-*.log
 *.exe
-*.log
 *.obj
 *.idb
-*.exe
+*.ilk
+*.pdb
+*.idb
+*.obj
+*.log

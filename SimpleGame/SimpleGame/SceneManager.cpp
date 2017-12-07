@@ -1,11 +1,14 @@
 #include "stdafx.h"
 #include "SceneManager.h"
+#include "Sound.h"
 
 //int k = 0;
 
 SceneManager::SceneManager(int width, int height)
 {
 	g_Renderer = new Renderer(width, height);
+	m_sound = new Sound();
+	soundBG = m_sound->CreateSound("./Resource/bgm.mp3");
 	Ogong = g_Renderer->CreatePngTexture("./Resource/ogong.png");
 	Vegeta = g_Renderer->CreatePngTexture("./Resource/vegeta.png");
 	Bg = g_Renderer->CreatePngTexture("./Resource/bg2.png");
@@ -20,6 +23,7 @@ SceneManager::SceneManager(int width, int height)
 	{
 		obj[i] = NULL;
 	}
+	m_sound->PlaySound(soundBG, true, 0.5);
 }
 
 void SceneManager::drawObject()
@@ -67,6 +71,7 @@ void SceneManager::drawObject()
 			}
 		}
 	}
+	g_Renderer->DrawText(-50, 0, GLUT_BITMAP_HELVETICA_18, 0, 0, 0, "Dead or Alive");
 }
 
 int SceneManager::addObject(float x, float y, int type, int team)
@@ -139,12 +144,14 @@ void SceneManager::collision()
 							obj[i]->life = obj[i]->life - obj[j]->life;
 							obj[j]->life = 0;
 							colCheck++;
+							g_Renderer->SetSceneTransform(10, 10, 1.1, 1.1);
 						}
 						else if (obj[j]->obj_type == OBJECT_BUILDING && obj[i]->obj_type == OBJECT_CHARACTER && obj[j]->Team != obj[i]->Team)
 						{
 							obj[j]->life = obj[j]->life - obj[i]->life;
 							obj[i]->life = 0;
 							colCheck++;
+							//g_Renderer->SetSceneTransform(10, 10, 1.1, 1.1);
 						}
 
 						//건물에서 총알 발사 상대편 진영에 맞게
@@ -153,12 +160,14 @@ void SceneManager::collision()
 							obj[j]->life = obj[j]->life - obj[i]->life;
 							obj[i]->life = 0;
 							colCheck++;
+							g_Renderer->SetSceneTransform(10, 10, 1.1, 1.1);
 						}
 						else if (obj[i]->obj_type == OBJECT_BUILDING && obj[j]->obj_type == OBJECT_BULLET && obj[i]->Team != obj[j]->Team)
 						{
 							obj[i]->life = obj[i]->life - obj[j]->life;
 							obj[j]->life = 0;
 							colCheck++;
+							//g_Renderer->SetSceneTransform(10, 10, 1.1, 1.1);
 						}
 
 						//캐릭터가 총알에 맞았을때
@@ -195,6 +204,7 @@ void SceneManager::collision()
 							obj[i]->life = obj[i]->life - obj[j]->life;
 							obj[j]->life = 0;
 							colCheck++;
+							g_Renderer->SetSceneTransform(10, 10, 1.1, 1.1);
 							//cout << obj[i]->life << endl;
 						}
 						else if (obj[j]->obj_type == OBJECT_BUILDING && obj[i]->obj_type == OBJECT_ARROW && obj[j]->Team != obj[i]->Team)
@@ -202,6 +212,7 @@ void SceneManager::collision()
 							obj[j]->life = obj[j]->life - obj[i]->life;
 							obj[i]->life = 0;
 							colCheck++;
+							//g_Renderer->SetSceneTransform(10, 10, 1.1, 1.1);
 						}
 						/*
 						//건물에 자기편 캐릭터가 부딪힐경우
@@ -285,8 +296,8 @@ void SceneManager::deleteObj(int ob)
 
 void SceneManager::updateObj(float elapseT)
 {
+	g_Renderer->SetSceneTransform(0, 0, 1, 1);
 	collision();
-
 	for (int i = 0; i < MAX_OBJECT; ++i)
 	{
 		if (obj[i] != NULL)
