@@ -10,3 +10,7 @@
 *.idb
 *.obj
 *.log
+*.ipch
+*.ipch
+*.ipch
+*.pch

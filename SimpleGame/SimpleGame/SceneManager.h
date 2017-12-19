@@ -13,6 +13,7 @@ public:
 	void drawObject();
 	int addObject(float x, float y, int type, int team);
 	int addBullet(float x, float y, int type, int team);
+	void shake();
 
 	void collision();
 	void deleteObj(int ob);
@@ -31,5 +32,6 @@ public:
 	int Enemy;
 	int Particle;
 	int Particle2;
+	int Rain;
 	int soundBG;
 };

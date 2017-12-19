@@ -127,9 +127,9 @@ Object::Object(float x, float y, int type, int team)
 		ob_y = y;
 		ob_z = 0;
 		ob_size = 5;
-		color_r = 0.5;
-		color_g = 0.2;
-		color_b = 0.7;
+		color_r = 0;
+		color_g = 1;
+		color_b = 0;
 		color_a = 1;
 		ob_vecX = 300.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
 		ob_vecY = 300.f *(((float)rand() / (float)RAND_MAX) - 0.5f);
